@@ -8,6 +8,7 @@ import { VoiceAnalysisResult } from '@/utils/mockData';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Mic, Lock, HeadphonesIcon, UserCheck } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Index = () => {
   const [analysisResult, setAnalysisResult] = useState<VoiceAnalysisResult | null>(null);
@@ -34,7 +35,8 @@ const Index = () => {
         <Tabs defaultValue="record" className="w-full max-w-4xl mx-auto">
           <TabsList className="grid w-full grid-cols-2">
             <TabsTrigger value="record">Record Voice</TabsTrigger>
-            <TabsTrigger value="use-cases" disabled={!analysisResult}>Use Cases</TabsTrigger>
+            {/* <TabsTrigger value="use-cases" disabled={!analysisResult}>Use Cases</TabsTrigger> */}
+            <TabsTrigger value="use-cases">Use Cases</TabsTrigger>
           </TabsList>
           <TabsContent value="record" className="space-y-8 pt-6">
             <VoiceRecorder onAnalysisComplete={handleAnalysisComplete} />
@@ -46,6 +48,7 @@ const Index = () => {
           
           <TabsContent value="use-cases" className="pt-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <Link to="/attendance-tracker" className="block">
               <Card>
                 <CardHeader>
                   <CardTitle className="flex items-center">
@@ -64,6 +67,7 @@ const Index = () => {
                   </p>
                 </CardContent>
               </Card>
+              </Link>
               
               <Card>
                 <CardHeader>

@@ -4,7 +4,7 @@ import { Mic } from 'lucide-react';
 
 const Header: React.FC = () => {
   return (
-    <header className="w-full py-4 px-6 flex items-center justify-between bg-white/90 backdrop-blur-sm sticky top-0 z-10 border-b border-gray-100">
+    <header className="w-full py-4 px-8 flex items-center justify-between bg-white/90 backdrop-blur-sm sticky top-0 z-10 border-b border-gray-100">
       <div className="flex items-center space-x-2">
         <div className="w-10 h-10 rounded-lg gradient-bg flex items-center justify-center">
           <Mic className="h-5 w-5 text-white" />
