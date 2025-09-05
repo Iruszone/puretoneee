@@ -9,6 +9,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Mic, Lock, HeadphonesIcon, UserCheck } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import AttendanceDashboard from "@/components/AttendanceDashboard";
 
 const Index = () => {
   const [analysisResult, setAnalysisResult] = useState<VoiceAnalysisResult | null>(null);
@@ -48,7 +49,7 @@ const Index = () => {
           
           <TabsContent value="use-cases" className="pt-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <Link to="/attendance-tracker" className="block">
+              <Link to="/attendance-dashboard" className="block">
               <Card>
                 <CardHeader>
                   <CardTitle className="flex items-center">
