@@ -39,7 +39,7 @@ const AttendanceTracker: React.FC = () => {
     try {
       const startDate = selectedDate ? format(selectedDate, 'yyyy-MM-dd') : undefined;
       const endDate = selectedDate ? format(selectedDate, 'yyyy-MM-dd') + 'T23:59:59' : undefined;
-      const { data, error } = await voiceService.getAttendanceRecords(startDate, endDate);
+      const { data, error } = await voiceService.getAttendanceRecords();
       if (error) throw error;
       setAttendanceRecords(data || []);
     } catch (error: any) {

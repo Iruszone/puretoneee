@@ -1,7 +1,26 @@
-import React from "react";
-import { Calendar, Download, User, AlertCircle, Clock } from "lucide-react";
+import React, { useState } from "react";
+import { User, CalendarIcon, Download } from "lucide-react";
+import { Calendar } from "@/components/ui/calendar";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Button } from "@/components/ui/button";
+import { format } from "date-fns";
 
 const AttendanceDashboard: React.FC = () => {
+  const [selectedDate, setSelectedDate] = useState<Date | undefined>();
+
+  // Handle date change from calendar picker
+  const handleDateChange = (date: Date | undefined) => {
+    setSelectedDate(date);
+    console.log("Selected date:", date);
+    // TODO: Fetch attendance records for this date
+  };
+
+  // Handle export click
+  const handleExport = () => {
+    console.log("Exporting records for:", selectedDate);
+    // TODO: Add your export logic here (CSV/Excel/Backend call)
+  };
+
   return (
     <div className="p-6 bg-gray-50 min-h-screen">
       {/* Header */}
@@ -32,13 +51,32 @@ const AttendanceDashboard: React.FC = () => {
       </div>
 
       {/* Controls */}
-      <div className="flex justify-end space-x-3 mb-6">
-        <button className="flex items-center px-4 py-2 border rounded-lg hover:bg-gray-100">
-          <Calendar className="w-4 h-4 mr-2" /> Select date
-        </button>
-        <button className="flex items-center px-4 py-2 border rounded-lg hover:bg-gray-100">
-          <Download className="w-4 h-4 mr-2" /> Export
-        </button>
+      <div className="flex flex-wrap justify-end gap-3 mb-6">
+        {/* Date Picker */}
+        <Popover>
+          <PopoverTrigger asChild>
+            <Button variant="outline" className="justify-start text-left font-normal">
+              <CalendarIcon className="mr-2 h-4 w-4" />
+              {selectedDate ? format(selectedDate, "PPP") : "Select date"}
+            </Button>
+          </PopoverTrigger>
+          <PopoverContent className="w-auto p-0" align="end">
+            <Calendar
+              mode="single"
+              selected={selectedDate}
+              onSelect={handleDateChange}
+              initialFocus
+            />
+          </PopoverContent>
+        </Popover>
+
+        {/* Export Button */}
+        <Button onClick={handleExport} variant="outline">
+          <Download className="h-4 w-4 mr-2" />
+          Export
+        </Button>
+
+        {/* Demo Record Button */}
         <button className="flex items-center px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700">
           <User className="w-4 h-4 mr-2" /> Demo Record
         </button>
@@ -48,7 +86,9 @@ const AttendanceDashboard: React.FC = () => {
       <div className="bg-white shadow rounded-xl p-6">
         <h2 className="text-xl font-semibold mb-2">Attendance Records</h2>
         <p className="text-gray-500 mb-4">
-          Showing all recent attendance records
+          {selectedDate
+            ? `Showing records for ${selectedDate.toDateString()}`
+            : "Showing all recent attendance records"}
         </p>
 
         <table className="w-full text-left border-collapse">
