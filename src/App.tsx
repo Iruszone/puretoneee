@@ -6,6 +6,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import AttendanceDashboard from "@/components/AttendanceDashboard";
+import VoiceProfileManager from "@/components/voiceProfileManager";
+import AttendanceTracker from './components/AttendanceTracker';
 
 const queryClient = new QueryClient();
 
@@ -20,6 +22,8 @@ const App = () => (
           <Route path="/attendance-dashboard" element={<AttendanceDashboard />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
+          <Route path="/voice-profiles" element={<VoiceProfileManager />} />
+          <Route path="/attendance-tracker" element={<AttendanceTracker />} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>

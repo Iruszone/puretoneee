@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Mic } from 'lucide-react';
+import { Link } from "react-router-dom";
 
 const Header: React.FC = () => {
   return (
@@ -17,7 +18,9 @@ const Header: React.FC = () => {
 
       <nav className="hidden md:flex items-center space-x-6">
         <a href="#" className="text-sm font-medium text-pt-dark hover:text-pt-purple transition-colors">Dashboard</a>
-        <a href="#" className="text-sm font-medium text-gray-500 hover:text-pt-purple transition-colors">Voice Library</a>
+        <a href="#" className="text-sm font-medium text-gray-500 hover:text-pt-purple transition-colors"><Link to="/voice-profiles" className="text-sm font-medium text-pt-dark hover:text-pt-purple transition-colors">
+          Library
+</Link></a>
         <a href="#" className="text-sm font-medium text-gray-500 hover:text-pt-purple transition-colors">Analytics</a>
         <a href="#" className="text-sm font-medium text-gray-500 hover:text-pt-purple transition-colors">Settings</a>
       </nav>
